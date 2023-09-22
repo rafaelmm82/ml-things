@@ -3,6 +3,7 @@
 from sklearn.cluster import KMeans
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # load iris dataset
 iris = load_iris()
@@ -35,5 +36,25 @@ plt.scatter(X[:,0], X[:,2], c=labels)
 plt.scatter(model.cluster_centers_[:,0], model.cluster_centers_[:,2], marker='D', s=100)
 plt.show()
 
+# analysing the inertia of models with number of cluster varing from 1 to 10
+ks = range(1, 10)
+inertias = []
+
+for k in ks:
+    # Create a KMeans instance with k clusters: model
+    model = KMeans(n_clusters=k)
+    
+    # Fit model to samples
+    model.fit(X)
+    
+    # Append the inertia to the list of inertias
+    inertias.append(model.inertia_)
+
+# Plot ks vs inertias
+plt.plot(ks, inertias, '-o')
+plt.xlabel('number of clusters, k')
+plt.ylabel('inertia')
+plt.xticks(ks)
+plt.show()
 
 
