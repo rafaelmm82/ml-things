@@ -58,3 +58,50 @@ plt.xticks(ks)
 plt.show()
 
 
+# a dataframe named df with labels varing from 1 to 9, and companies names
+# make a plot for each company name in a scatter plot considering the label values
+import matplotlib.pyplot as plt
+
+# Loop through each company
+for company in df['companies'].unique():
+    # Filter the data for the current company
+    company_data = df[df['companies'] == company]
+    
+    # Scatter plot of label values for the current company, with company name mas text marker
+    # plt.scatter(company_data['labels'], company_data['labels'], label=company, marker=company)
+    plt.scatter(company_data['labels'], company_data['labels'], label=company, marker=company)
+    # plt.scatter(company_data['labels'], company_data['labels'], label=company)
+
+
+# Add title, legend, and labels
+plt.title('Scatter Plot of Label Values for Each Company')
+plt.legend()
+plt.xlabel('Label')
+plt.ylabel('Label')
+
+# Show the plot
+plt.show()
+
+import matplotlib.pyplot as plt
+
+# Loop through each company
+for company in df['companies'].unique():
+    # Filter the data for the current company
+    company_data = df[df['companies'] == company]
+    
+    # Scatter plot of label values for the current company
+    plt.scatter(company_data['labels'], company_data['labels'], label=company)
+    
+    # Add company name as text at each marker
+    for label, x, y in zip(company_data['labels'], company_data['labels'], company_data['labels']):
+        plt.text(x, y, company, ha='center', va='center')
+
+# Add title, legend, and labels
+plt.title('Scatter Plot of Label Values for Each Company')
+plt.legend()
+plt.xlabel('Label')
+plt.ylabel('Label')
+
+# Show the plot
+plt.show()
+
